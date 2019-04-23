@@ -31,18 +31,22 @@ public class Main2Activity extends AppCompatActivity {
             openMainActivity();
         });
     }
-    public static String nameStory(String name) {
+    public static String nameStory(String names) {
+        String name = names.toUpperCase();
         String toReturn;
         if (name.startsWith("E") || name.startsWith("A") || name.startsWith("O") || name.startsWith("I") || name.startsWith("U")) {
             toReturn = "In your future, you will be rich.";
-        } else if (name.startsWith("J") || name.startsWith("K") || name.startsWith("L") || name.startsWith("C")){
+        } else if (name.startsWith("J") || name.startsWith("K") || name.startsWith("L") || name.startsWith("C")) {
             toReturn = "In your future, you will be famous.";
+        } else if (name.equals("GEOFF")) {
+            toReturn = "In your future, you will remain bald";
         } else {
             toReturn = "In your future, you will be happy.";
         }
         return toReturn;
     }
-    public static String colorStory(String color) {
+    public static String colorStory(String colors) {
+        String color = colors.toLowerCase();
         String toReturn;
         if (color.equals("red") || color.equals("blue") || color.equals("yellow")) {
             toReturn = "You will live in a " + color + " house.";
