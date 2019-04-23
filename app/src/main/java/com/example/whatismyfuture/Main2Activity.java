@@ -49,7 +49,7 @@ public class Main2Activity extends AppCompatActivity {
         } else if (color.equals("orange") || color.equals("green") || color.equals("purple")) {
             toReturn = "You will have a " + color + " car.";
         } else {
-            toReturn = "You will have a terminal disease.";
+            toReturn = "You will have a terminal illness.";
         }
         return toReturn;
     }
