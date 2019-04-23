@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             openMain2Activity();
             //showInputWorked();
             //showInputWorked(color);
-            showInputWorked(String.valueOf(zip));
+            //showInputWorked(String.valueOf(zip));
             //showInputWorked(String.valueOf(currentTemp));
         });
     }
@@ -77,12 +77,11 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     JSONObject mainObject = response.getJSONObject("main");
                     String temp = String.valueOf(mainObject.getDouble("temp"));
-                    double tempAsInt = Double.parseDouble(temp);
+                    double tempAsDouble = Double.parseDouble(temp);
                     Log.d("Log Output:", response.toString(2));
-                    currentTemp = tempAsInt;
+                    currentTemp = tempAsDouble;
                 } catch (JSONException e) {
                     e.printStackTrace();
-
                 }
             }
         }, new Response.ErrorListener() {

@@ -32,16 +32,41 @@ public class Main2Activity extends AppCompatActivity {
         });
     }
     public static String nameStory(String name) {
-        if (name.startsWith("E")) {
-            String toReturn = "In your future, you will get money";
+        String toReturn;
+        if (name.startsWith("E") || name.startsWith("A") || name.startsWith("O") || name.startsWith("I") || name.startsWith("U")) {
+            toReturn = "In your future, you will be rich.";
+        } else if (name.startsWith("J") || name.startsWith("K") || name.startsWith("L") || name.startsWith("C")){
+            toReturn = "In your future, you will be famous.";
+        } else {
+            toReturn = "In your future, you will be happy.";
         }
-        return name;
+        return toReturn;
     }
     public static String colorStory(String color) {
-        return color;
+        String toReturn;
+        if (color.equals("red") || color.equals("blue") || color.equals("yellow")) {
+            toReturn = "You will live in a " + color + " house.";
+        } else if (color.equals("orange") || color.equals("green") || color.equals("purple")) {
+            toReturn = "You will have a " + color + " car.";
+        } else {
+            toReturn = "You will have a terminal disease.";
+        }
+        return toReturn;
     }
     public static String numberStory(int number) {
-        return Integer.toString(number);
+        String toReturn;
+        if (number < 0){
+            toReturn = "You will be a hermit.";
+        } else if (number < 5) {
+            toReturn = "You will have " + number + " children.";
+        } else if (number < 20) {
+            toReturn = "You will have " + number + " dogs and cats.";
+        } else if (number < 50) {
+            toReturn = "You will marry at age " + number + ".";
+        } else {
+            toReturn = "You will die at age " + number + ".";
+        }
+        return toReturn;
     }
     public void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
