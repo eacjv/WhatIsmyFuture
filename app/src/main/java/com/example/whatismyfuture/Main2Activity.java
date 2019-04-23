@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class Main2Activity extends AppCompatActivity {
     private String name = MainActivity.name;
     private String color = MainActivity.color;
@@ -22,6 +24,8 @@ public class Main2Activity extends AppCompatActivity {
         colorInfo.setText(colorStory(color));
         TextView numberInfo = findViewById(R.id.numberInfo);
         numberInfo.setText(numberStory(number));
+        TextView weatherInfo = findViewById(R.id.weatherInfo);
+        weatherInfo.setText(Double.toString(weather));
         final Button returnButton = findViewById(R.id.returnButton);
         returnButton.setOnClickListener( v -> {
             openMainActivity();

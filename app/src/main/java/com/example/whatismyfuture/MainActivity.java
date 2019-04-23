@@ -27,14 +27,16 @@ import org.json.JSONObject;
 
 
 public class MainActivity extends AppCompatActivity {
-    public static double currentTemp = -500;
+    public static double currentTemp;
     public static String name;
     public static String color;
     public static int number;
+    public static int zip;
 
     EditText inputName;
     EditText inputColor;
     EditText inputNumber;
+    EditText inputZip;
 
     Button submitButton;
     @Override
@@ -45,16 +47,18 @@ public class MainActivity extends AppCompatActivity {
         inputName = (EditText) findViewById(R.id.inputName);
         inputColor = (EditText) findViewById(R.id.inputColor);
         inputNumber = (EditText) findViewById(R.id.inputNumber);
+        inputZip = (EditText) findViewById(R.id.inputZip);
         final Button submit = findViewById(R.id.submitButton);
         submit.setOnClickListener(v -> {
             name = inputName.getText().toString();
             color = inputColor.getText().toString();
             number = Integer.valueOf(inputNumber.getText().toString());
+            zip = Integer.valueOf(inputZip.getText().toString());
             getWeather();
             openMain2Activity();
-            showInputWorked(name);
+            //showInputWorked();
             //showInputWorked(color);
-            //showInputWorked(String.valueOf(number));
+            showInputWorked(String.valueOf(zip));
             //showInputWorked(String.valueOf(currentTemp));
         });
     }
@@ -66,26 +70,29 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public double getWeather() {
-        String url = "http://api.openweathermap.org/data/2.5/weather?q=islamabad,pakistan&appid=9217c015bb090dcf6b1c0af9b50f7a71&units=imperial";
+        String url = "http://api.openweathermap.org/data/2.5/weather?zip=" + Integer.toString(zip) + ",us&appid=9217c015bb090dcf6b1c0af9b50f7a71&units=imperial";
         JsonObjectRequest json = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
                     JSONObject mainObject = response.getJSONObject("main");
-                    JSONArray array = response.getJSONArray("weather");
-                    JSONObject object = array.getJSONObject(0);
-                    double temp = mainObject.getDouble("temp");
-                    currentTemp = temp;
+                    String temp = String.valueOf(mainObject.getDouble("temp"));
+                    double tempAsInt = Double.parseDouble(temp);
+                    Log.d("Log Output:", response.toString(2));
+                    currentTemp = tempAsInt;
                 } catch (JSONException e) {
                     e.printStackTrace();
+
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.e("Error: ", error.toString());
             }
         }
         );
+        json.setShouldCache(false);
         RequestQueue request = Volley.newRequestQueue(this);
         request.add(json);
         return currentTemp;
