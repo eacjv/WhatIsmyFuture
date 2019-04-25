@@ -18,6 +18,8 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        TextView namesFuture = findViewById(R.id.namesFuture);
+        namesFuture.setText(name + ":");
         TextView nameInfo = findViewById(R.id.nameInfo);
         nameInfo.setText(nameStory(name));
         TextView colorInfo = findViewById(R.id.colorInfo);
@@ -49,26 +51,28 @@ public class Main2Activity extends AppCompatActivity {
         String color = colors.toLowerCase();
         String toReturn;
         if (color.equals("red") || color.equals("blue") || color.equals("yellow")) {
-            toReturn = "You will live in a " + color + " house.";
-        } else if (color.equals("black") || color.equals("green") || color.equals("purple")) {
-            toReturn = "You will have a " + color + " car.";
+            toReturn = "You will live in a " + color + " house";
+        } else if (color.equals("orange") || color.equals("green") || color.equals("purple")) {
+            toReturn = "You will have a " + color + " car";
         } else {
-            toReturn = "You will have a terminal illness.";
+            toReturn = "You will have a terminal illness";
         }
         return toReturn;
     }
     public static String numberStory(int number) {
         String toReturn;
         if (number < 0){
-            toReturn = "You will be a hermit.";
+            toReturn = "and you will be a hermit.";
         } else if (number < 5) {
-            toReturn = "You will have " + number + " children.";
+            toReturn = "and you will have " + number + " children.";
         } else if (number < 20) {
-            toReturn = "You will have " + number + " dogs and cats.";
+            toReturn = "and you will have " + number + " dogs and cats.";
         } else if (number < 50) {
-            toReturn = "You will marry at age " + number + ".";
+            toReturn = "and you will marry at age " + number + ".";
+        } else if (number < 122){
+            toReturn = "and you will die at age " + number + ".";
         } else {
-            toReturn = "You will die at age " + number + ".";
+            toReturn = "and you will own " + number + " plants.";
         }
         return toReturn;
     }
