@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public static String color;
     public static int number;
     public static int zip;
-
+    public static String temp;
     EditText inputName;
     EditText inputColor;
     EditText inputNumber;
@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
             color = inputColor.getText().toString();
             number = Integer.valueOf(inputNumber.getText().toString());
             zip = Integer.valueOf(inputZip.getText().toString());
+            temp = Double.toString(currentTemp);
             getWeather(zip);
             openMain2Activity();
             //showInputWorked();
@@ -71,15 +72,20 @@ public class MainActivity extends AppCompatActivity {
     }
     public void getWeather(int zip) {
         String url = "http://api.openweathermap.org/data/2.5/weather?zip=" + Integer.toString(zip) + ",us&appid=9217c015bb090dcf6b1c0af9b50f7a71&units=imperial";
-        JsonObjectRequest json = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        /*String url = "http://api.openweathermap.org/data/2.5/weather";
+        JSONObject request = new JSONObject();
+        try { request.put("zip", Integer.toString(zip) + ",us"); } catch (Exception e) { }
+        try { request.put("appid", "9217c015bb090dcf6b1c0af9b50f7a71"); } catch (Exception e) { }
+        */JsonObjectRequest json = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
                     JSONObject mainObject = response.getJSONObject("main");
+                    Log.d("mian to string", mainObject.toString());
                     String temp = String.valueOf(mainObject.getDouble("temp"));
                     double tempAsDouble = Double.parseDouble(temp);
                     currentTemp = tempAsDouble;
-                    System.out.println("Temp = " + currentTemp);
+                    Log.e("currentTemp is ", Double.toString(currentTemp));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -92,7 +98,8 @@ public class MainActivity extends AppCompatActivity {
         }
         );
         json.setShouldCache(false);
-        RequestQueue request = Volley.newRequestQueue(this);
-        request.add(json);
+        RequestQueue request2 = Volley.newRequestQueue(this);
+        request2.add(json);
+        Log.d("current temp now is ", Double.toString(currentTemp));
     }
 }

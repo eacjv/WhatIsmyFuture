@@ -12,7 +12,7 @@ public class Main2Activity extends AppCompatActivity {
     private String name = MainActivity.name;
     private String color = MainActivity.color;
     private int number = MainActivity.number;
-    private double weather = MainActivity.currentTemp;
+    private double weather = Double.parseDouble(MainActivity.temp);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +88,7 @@ public class Main2Activity extends AppCompatActivity {
     }
     public static String weatherStory(double temp) {
         String toReturn;
-        if (temp < 40) {
+        if (temp < 32) {
             toReturn = "It might be freezing today, but it'll warm up soon! Keep pushing!";
         } else if (temp < 60) {
             toReturn = "You should go for a walk outside today!";
