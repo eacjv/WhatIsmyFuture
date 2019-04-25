@@ -52,7 +52,7 @@ public class Main2Activity extends AppCompatActivity {
         String toReturn;
         if (color.equals("red") || color.equals("blue") || color.equals("yellow")) {
             toReturn = "You will live in a " + color + " house";
-        } else if (color.equals("orange") || color.equals("green") || color.equals("purple")) {
+        } else if (color.equals("black") || color.equals("green") || color.equals("purple")) {
             toReturn = "You will have a " + color + " car";
         } else {
             toReturn = "You will have a terminal illness";
