@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Main2Activity.class);
         startActivity(intent);
     }
-    public double getWeather(int zip) {
+    public void getWeather(int zip) {
         String url = "http://api.openweathermap.org/data/2.5/weather?zip=" + Integer.toString(zip) + ",us&appid=9217c015bb090dcf6b1c0af9b50f7a71&units=imperial";
         JsonObjectRequest json = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -94,6 +94,5 @@ public class MainActivity extends AppCompatActivity {
         json.setShouldCache(false);
         RequestQueue request = Volley.newRequestQueue(this);
         request.add(json);
-        return currentTemp;
     }
 }

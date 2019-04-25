@@ -27,7 +27,7 @@ public class Main2Activity extends AppCompatActivity {
         TextView numberInfo = findViewById(R.id.numberInfo);
         numberInfo.setText(numberStory(number));
         TextView weatherInfo = findViewById(R.id.weatherInfo);
-        weatherInfo.setText(Double.toString(weather));
+        weatherInfo.setText(weatherStory(weather));
         final Button returnButton = findViewById(R.id.returnButton);
         returnButton.setOnClickListener( v -> {
             openMainActivity();
@@ -54,6 +54,14 @@ public class Main2Activity extends AppCompatActivity {
             toReturn = "You will live in a " + color + " house";
         } else if (color.equals("black") || color.equals("green") || color.equals("purple")) {
             toReturn = "You will have a " + color + " car";
+        } else if (color.equals("orange")) {
+            toReturn = "You will have an orange collection";
+        } else if (color.equals("pink") || color.equals("brown") || color.equals("white")) {
+            toReturn = "You will have " + color + " hair";
+        } else if (color.equals("grey") || color.equals("gray")) {
+            toReturn = "You will have " + color + " phone";
+        } else if (color.equals("illini orange")) {
+            toReturn = "You will bleed orange and blue forever";
         } else {
             toReturn = "You will have a terminal illness";
         }
@@ -69,10 +77,25 @@ public class Main2Activity extends AppCompatActivity {
             toReturn = "and you will have " + number + " dogs and cats.";
         } else if (number < 50) {
             toReturn = "and you will marry at age " + number + ".";
-        } else if (number < 122){
+        } else if (number < 122) {
             toReturn = "and you will die at age " + number + ".";
+        } else if (number == 125) {
+            toReturn = "and you will teach 125 more classes";
         } else {
             toReturn = "and you will own " + number + " plants.";
+        }
+        return toReturn;
+    }
+    public static String weatherStory(double temp) {
+        String toReturn;
+        if (temp < 40) {
+            toReturn = "It might be freezing today, but it'll warm up soon! Keep pushing!";
+        } else if (temp < 60) {
+            toReturn = "You should go for a walk outside today!";
+        } else if (temp < 90) {
+            toReturn = "The weather looks great today, so get out there and get started on fulfilling your future!";
+        } else {
+            toReturn = "The weather seems a bit extreme today, maybe stay inside.";
         }
         return toReturn;
     }
