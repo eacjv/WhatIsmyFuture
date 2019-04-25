@@ -54,12 +54,12 @@ public class MainActivity extends AppCompatActivity {
             color = inputColor.getText().toString();
             number = Integer.valueOf(inputNumber.getText().toString());
             zip = Integer.valueOf(inputZip.getText().toString());
-            getWeather();
+            getWeather(zip);
             openMain2Activity();
             //showInputWorked();
             //showInputWorked(color);
             //showInputWorked(String.valueOf(zip));
-            //showInputWorked(String.valueOf(currentTemp));
+            showInputWorked(String.valueOf(currentTemp));
         });
     }
     private void showInputWorked(String input) {
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Main2Activity.class);
         startActivity(intent);
     }
-    public double getWeather() {
+    public double getWeather(int zip) {
         String url = "http://api.openweathermap.org/data/2.5/weather?zip=" + Integer.toString(zip) + ",us&appid=9217c015bb090dcf6b1c0af9b50f7a71&units=imperial";
         JsonObjectRequest json = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -78,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject mainObject = response.getJSONObject("main");
                     String temp = String.valueOf(mainObject.getDouble("temp"));
                     double tempAsDouble = Double.parseDouble(temp);
-                    Log.d("Log Output:", response.toString(2));
                     currentTemp = tempAsDouble;
+                    System.out.println("Temp = " + currentTemp);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
