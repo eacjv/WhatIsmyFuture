@@ -7,10 +7,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
-
+import android.graphics.Color;
 public class Main2Activity extends AppCompatActivity {
     private String name = MainActivity.name;
     private String color = MainActivity.color;
+    private static String textColor;
     private int number = MainActivity.number;
     private double weather = Double.parseDouble(MainActivity.temp);
 
@@ -22,12 +23,23 @@ public class Main2Activity extends AppCompatActivity {
         namesFuture.setText(name + ":");
         TextView nameInfo = findViewById(R.id.nameInfo);
         nameInfo.setText(nameStory(name));
+        nameInfo.setTextColor(Color.CYAN);
         TextView colorInfo = findViewById(R.id.colorInfo);
         colorInfo.setText(colorStory(color));
+        if (textColor.equals("red")) {colorInfo.setTextColor(Color.RED);
+        } else if (textColor.equals("blue")) {colorInfo.setTextColor(Color.BLUE);
+        } else if (textColor.equals("green")) {colorInfo.setTextColor(Color.GREEN);
+        } else if (textColor.equals("yellow")) {colorInfo.setTextColor(Color.YELLOW);
+        } else if (textColor.equals("illini orange")) {colorInfo.setTextColor(0xFFF06D2F);
+        } else if (textColor.equals("pink")) {colorInfo.setTextColor(Color.MAGENTA);
+        } else if (textColor.equals("gray")) {colorInfo.setTextColor(Color.GRAY);
+        }
         TextView numberInfo = findViewById(R.id.numberInfo);
         numberInfo.setText(numberStory(number));
+        numberInfo.setTextColor(Color.GREEN);
         TextView weatherInfo = findViewById(R.id.weatherInfo);
         weatherInfo.setText(weatherStory(weather));
+        weatherInfo.setTextColor(Color.BLUE);
         final Button returnButton = findViewById(R.id.returnButton);
         returnButton.setOnClickListener( v -> {
             openMainActivity();
@@ -41,7 +53,7 @@ public class Main2Activity extends AppCompatActivity {
         } else if (name.startsWith("J") || name.startsWith("K") || name.startsWith("L") || name.startsWith("C")) {
             toReturn = "In your future, you will be famous.";
         } else if (name.equals("GEOFF")) {
-            toReturn = "In your future, you will remain bald";
+            toReturn = "In your future, you will remain bald.";
         } else {
             toReturn = "In your future, you will be happy.";
         }
@@ -49,21 +61,22 @@ public class Main2Activity extends AppCompatActivity {
     }
     public static String colorStory(String colors) {
         String color = colors.toLowerCase();
+        textColor = color;
         String toReturn;
         if (color.equals("red") || color.equals("blue") || color.equals("yellow")) {
             toReturn = "You will live in a " + color + " house";
         } else if (color.equals("black") || color.equals("green") || color.equals("purple")) {
-            toReturn = "You will have a " + color + " car";
+            toReturn = "You will have a " + color + " car.";
         } else if (color.equals("orange")) {
-            toReturn = "You will have an orange collection";
+            toReturn = "You will have an orange collection.";
         } else if (color.equals("pink") || color.equals("brown") || color.equals("white")) {
-            toReturn = "You will have " + color + " hair";
+            toReturn = "You will have " + color + " hair.";
         } else if (color.equals("grey") || color.equals("gray")) {
-            toReturn = "You will have " + color + " phone";
+            toReturn = "You will have " + color + " phone.";
         } else if (color.equals("illini orange")) {
-            toReturn = "You will bleed orange and blue forever";
+            toReturn = "You will bleed orange and blue forever.";
         } else {
-            toReturn = "You will have a terminal illness";
+            toReturn = "You will have a terminal illness.";
         }
         return toReturn;
     }
@@ -80,7 +93,7 @@ public class Main2Activity extends AppCompatActivity {
         } else if (number < 122) {
             toReturn = "and you will die at age " + number + ".";
         } else if (number == 125) {
-            toReturn = "and you will teach 125 more classes";
+            toReturn = "and you will teach 125 more classes.";
         } else {
             toReturn = "and you will own " + number + " plants.";
         }
